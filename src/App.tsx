@@ -1,26 +1,26 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import {observer, inject} from "mobx-react";
+import {AppStore} from "./store/AppStore";
+import {StoreEnum} from "./store/StoreEnum";
 
-const App: React.FC = () => {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+interface InjectedProps {
+    appStore: AppStore
+}
+
+@inject(StoreEnum.appStore)
+@observer
+class App extends React.Component {
+
+    get injected() {
+        return this.props as InjectedProps;
+    }
+
+    render() {
+        return <div>
+            {this.injected.appStore.name}
+        </div>;
+    }
 }
 
 export default App;
