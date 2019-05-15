@@ -2,6 +2,7 @@ import React from 'react';
 import './App.css';
 import {observer, inject} from "mobx-react";
 import {AppStore} from "./store/AppStore";
+import {Icon} from "antd";
 import {StoreEnum} from "./store/StoreEnum";
 
 interface InjectedProps {
@@ -17,7 +18,8 @@ class App extends React.Component {
     }
 
     render() {
-        return <div>
+        return <div className="App">
+            <Icon type="play-circle" theme="twoTone" />
             {this.injected.appStore.name}
         </div>;
     }
